@@ -3,12 +3,12 @@
 import { Data } from "@/types/product";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import About from "./aboutType";
 import CourseContent from "./contentPreview";
 import CourseInstructor from "./courseInstructor";
 import Feature from "./feature";
 import GroupJoin from "./group-join";
 import Pointers from "./pointers";
-import About from "./aboutType";
 // Import other section components if needed
 interface InstructorProps {
   sectionData: Data;
@@ -23,6 +23,12 @@ function Instructor({ sectionData }: InstructorProps) {
 
   // Keep all sections (don’t filter out empty names)
   const sections = sectionData?.sections || [];
+  const tabSections = sections.filter(
+    (item) =>
+      item.name?.trim() !== "" &&
+      // Only check .values if it exists (for sections that have values)
+      (Array.isArray(item.values) ? item.values.length > 0 : true)
+  );
 
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -81,7 +87,7 @@ function Instructor({ sectionData }: InstructorProps) {
           onScroll={checkScroll}
           className="flex overflow-x-auto border-b gap-4 scrollbar-hide scroll-smooth"
         >
-          {sections.map((item, index) => (
+          {tabSections.map((item, index) => (
             <button
               key={index}
               onClick={() => handleTabClick(index, item.order_idx)}
