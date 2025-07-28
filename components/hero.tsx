@@ -1,7 +1,10 @@
+import { Data } from "@/types/product";
 import Image from "next/image";
 import Card from "./card";
-
-function Hero({ data }) {
+interface TData {
+  data: Data;
+}
+function Hero({ data }: TData) {
   const bg = "/images/uiherobg.jpeg";
 
   return (

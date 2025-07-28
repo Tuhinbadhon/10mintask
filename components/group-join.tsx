@@ -1,19 +1,47 @@
 "use client";
 import Image from "next/image";
 
-function GroupJoin({ joins }) {
+interface Cta {
+  clicked_url?: string;
+  text?: string;
+}
+
+interface Background {
+  image?: string;
+}
+
+interface JoinItem {
+  background?: Background;
+  top_left_icon_img?: string;
+  title?: string;
+  description?: string;
+  cta?: Cta;
+  thumbnail?: string;
+}
+
+interface Medium {
+  order_idx?: number;
+  name?: string;
+  values?: JoinItem[];
+}
+
+interface GroupJoinProps {
+  joins?: Medium;
+  id?: string;
+}
+
+function GroupJoin({ joins }: GroupJoinProps) {
   const joinsection = joins;
   const values = joinsection?.values || [];
 
   if (!joinsection || values.length === 0) return null;
-  // console.log(joinsection);
 
   return (
     <div id={`section-${joinsection.order_idx}`} className="mt-16">
-      {/* If you want to show name, you can do: */}
+      {/* Optional section name */}
       {/* <h2 className="text-2xl font-semibold mb-4">{joinsection.name || "Join Section"}</h2> */}
 
-      <div className="">
+      <div>
         {values.map((item, index) => (
           <div
             key={index}
@@ -24,7 +52,7 @@ function GroupJoin({ joins }) {
               backgroundPosition: "center",
             }}
           >
-            {/* Left: Text content - 50% */}
+            {/* Left: Text content */}
             <div className="flex flex-col justify-start w-1/2">
               {item.top_left_icon_img && (
                 <Image
@@ -52,7 +80,7 @@ function GroupJoin({ joins }) {
               )}
             </div>
 
-            {/* Right: Image - 50% */}
+            {/* Right: Image */}
             <div className="w-1/2 flex justify-center items-center ">
               {item.thumbnail && (
                 <Image
@@ -60,7 +88,7 @@ function GroupJoin({ joins }) {
                   alt="thumbnail"
                   width={500}
                   height={500}
-                  className="h-fit w-fit  rounded"
+                  className="h-fit w-fit rounded"
                   style={{ minHeight: 0 }}
                 />
               )}

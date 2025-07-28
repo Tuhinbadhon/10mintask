@@ -1,7 +1,12 @@
 "use client";
+import { Checklist } from "@/types/product";
 import Image from "next/image";
 
-function Feature({ features }) {
+interface TData {
+  features: Checklist;
+  id?: string;
+}
+function Feature({ features }: TData) {
   const featuressection = features; // access first item
   const values = featuressection?.values || [];
 
@@ -18,13 +23,16 @@ function Feature({ features }) {
       <div className="grid md:grid-cols-2 rounded overflow-hidden ">
         {values.map((item, index) => (
           <div key={index} className="  bg-[#111827]  p-6 flex  gap-4 ">
-            <Image
-              className="w-9 h-9"
-              src={item?.icon}
-              width={20}
-              height={20}
-              alt=""
-            ></Image>
+            {item?.icon && (
+              <Image
+                className="w-9 h-9"
+                src={item.icon}
+                width={20}
+                height={20}
+                alt=""
+              />
+            )}
+
             <div>
               <p className="text-white">{item?.title}</p>
               <p className="text-[#9CA3AF] text-sm mt-2">{item?.subtitle}</p>

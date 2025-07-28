@@ -1,8 +1,13 @@
 "use client";
+import { Section } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
 
-function CourseInstructor({ instructors }) {
+interface TData {
+  instructors: Section;
+  id: string;
+}
+function CourseInstructor({ instructors }: TData) {
   const instructorSection = instructors; // access first item
   const values = instructorSection?.values || [];
 

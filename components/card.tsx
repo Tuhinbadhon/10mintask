@@ -1,6 +1,10 @@
+import { Data } from "@/types/product";
 import RightSideCard from "./slider";
 
-function Card(data) {
+interface TData {
+  data: Data;
+}
+function Card({ data }: TData) {
   return (
     <div>
       <RightSideCard data={data} />

@@ -1,19 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import { Data } from "@/types/product";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import CourseInstructor from "./courseInstructor";
 import Feature from "./feature";
 import GroupJoin from "./group-join";
 // Import other section components if needed
+interface InstructorProps {
+  sectionData?: Data;
+  id?: string;
+}
+function Instructor({ sectionData }: InstructorProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-function Instructor({ sectionData }) {
-  const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
   // Keep all sections (don’t filter out empty names)
-  const sections = sectionData || [];
+  const sections = sectionData?.sections || [];
 
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -31,7 +37,7 @@ function Instructor({ sectionData }) {
     scrollRef.current?.scrollBy({ left: 200, behavior: "smooth" });
   };
 
-  const handleTabClick = (index, orderId) => {
+  const handleTabClick = (index: any, orderId: any) => {
     setActiveIndex(index);
     const sectionEl = document.getElementById(`section-${orderId}`);
     if (sectionEl) {
@@ -40,7 +46,7 @@ function Instructor({ sectionData }) {
   };
 
   // Return a friendly tab label, fallback when name is empty
-  const getSectionLabel = (item) => {
+  const getSectionLabel = (item: any) => {
     if (item.name?.trim() !== "") return item.name;
     if (item.type === "features") return "Features";
     if (item.type === "instructors") return "Instructors";

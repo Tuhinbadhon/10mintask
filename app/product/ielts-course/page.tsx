@@ -6,16 +6,17 @@ import { useProductData } from "@/hooks/useProductData";
 
 export default function Page() {
   const { data, error, isLoading } = useProductData();
-  // console.log(data);
+
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Failed to load course data.</p>;
+  if (error || !data?.data) return <p>Failed to load course data.</p>;
+
   const courseData = data?.data;
 
   return (
-    <div className="">
+    <div>
       <Hero data={courseData} />
       <div className="md:ml-44">
-        <Instructor sectionData={courseData?.sections} />
+        <Instructor sectionData={courseData} />
       </div>
     </div>
   );

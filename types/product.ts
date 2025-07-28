@@ -3,12 +3,26 @@ export interface Medium {
   type: string;
   url: string;
   thumbnail: string;
+  values?: Instructor[];
+  order_idx?: number;
+  name: string;
+  resource_type?: string;
+  resource_value?: string;
+  thumbnail_url?: string;
 }
 
 export interface Checklist {
   id: number;
   title: string;
   description: string;
+  subtitle: string;
+  values?: Instructor[];
+  order_idx?: number;
+  name: string;
+  icon?: string;
+  slug?: string;
+  text?: string;
+  image?: string;
 }
 
 export interface Section {
@@ -16,10 +30,22 @@ export interface Section {
   title: string;
   description: string;
   type: string;
+  values?: Instructor[];
+  order_idx?: number;
+  name: string;
+  subtitle: string;
+  icon?: string;
+  background?: Background;
+  top_left_icon_img?: string;
 }
 
 export interface CtaText {
   enroll_button_text: string;
+  enroll_button_url: string;
+  cta_text: string;
+  name: string;
+  description: string;
+  order_idx: number;
 }
 
 export interface Seo {
@@ -30,6 +56,7 @@ export interface Seo {
 export interface Data {
   slug: string;
   id: number;
+  data: Data[];
   title: string;
   description: string;
   media: Medium[];
@@ -37,4 +64,24 @@ export interface Data {
   seo: Seo;
   cta_text: CtaText;
   sections: Section[];
+}
+export interface Instructor {
+  name: string;
+  image?: string;
+  slug?: string;
+  description?: string;
+  university?: string;
+  score?: string;
+  icon?: string;
+  title?: string;
+  subtitle?: string;
+  background?: Background;
+  top_left_icon_img?: string;
+}
+export interface Background {
+  image: string;
+}
+export interface ApiResponse {
+  success: boolean;
+  data: Data;
 }

@@ -1,19 +1,23 @@
 "use client";
 
+import { Data } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Button } from "./ui/button";
 
-export default function RightSideCard({ data }) {
-  const slides = data?.data?.media || [
+interface RightSideCardProps {
+  data: Data;
+}
+export default function RightSideCard({ data }: RightSideCardProps) {
+  const slides = data?.media || [
     { image: "/images/sample-1.jpg" },
     { image: "/images/sample-2.jpg" },
   ];
@@ -31,7 +35,7 @@ export default function RightSideCard({ data }) {
           slide.resource_value.trim() !== ""))
   );
 
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
     <div className="md:w-[390px] bg-white border  p-1 space-y-4">
@@ -56,7 +60,7 @@ export default function RightSideCard({ data }) {
             return (
               <SwiperSlide key={index}>
                 <Image
-                  src={imgSrc}
+                  src={imgSrc || "/placeholder.jpg"}
                   alt="Slide"
                   width={400}
                   height={200}
@@ -145,7 +149,7 @@ export default function RightSideCard({ data }) {
                 className="cursor-pointer border-transparent transition-all duration-200"
               >
                 <Image
-                  src={imgSrc}
+                  src={imgSrc || "/placeholder.jpg"}
                   alt="Thumbnail"
                   width={100}
                   height={60}
@@ -192,7 +196,7 @@ export default function RightSideCard({ data }) {
         {" "}
         <Link href="https://app.10minuteschool.com/checkout" target="_blank">
           <Button className="w-full cursor-pointer  rounded bg-[#1DAE4C] hover:bg-green-700 text-white text-base">
-            {data?.data?.cta_text?.name}
+            {data?.cta_text?.name}
           </Button>
         </Link>
       </div>
@@ -200,7 +204,7 @@ export default function RightSideCard({ data }) {
       {/* Checklist Section */}
       <div className="space-y-1 mx-4 pb-5 text-sm text-gray-700">
         <p className="mb-4 text-xl font-semibold">এই কোর্সে যা থাকছে</p>
-        {data?.data?.checklist?.map((item, index) => (
+        {data?.checklist?.map((item, index) => (
           <div key={index} className="flex items-center gap-3">
             <Image
               src={item?.icon || "/images/fallback-icon.png"}
