@@ -8,7 +8,7 @@ interface Props {
 }
 export default function FreeItemCard({ feature }: Props) {
   return (
-    <div id={`section-${feature.order_idx}`} className="mt-10">
+    <div id={`section-${feature.order_idx}`} className="scroll-mt-20 mt-10">
       <h2 className="text-xl font-semibold mb-4">{feature?.name}</h2>
 
       <div

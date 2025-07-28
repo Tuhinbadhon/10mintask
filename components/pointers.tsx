@@ -8,7 +8,7 @@ export default function Pointers({ pointers }: props) {
   const values = pointers?.values || [];
   if (!pointers || values.length === 0) return null;
   return (
-    <div id={`section-${pointers.order_idx}`} className="mt-16">
+    <div id={`section-${pointers.order_idx}`} className="scroll-mt-20 mt-16">
       <div className="font-semibold text-2xl">{pointers?.name}</div>
       <div className="grid grid-cols-1 md:grid-cols-2 border p-5 rounded mt-5 gap-4">
         {values.map((item, index) => (

@@ -28,7 +28,7 @@ export default function Faq({ feature }: FaqProps) {
   };
 
   return (
-    <section id={`section-${order_idx}`} className="mx-auto py-10">
+    <section id={`section-${order_idx}`} className="mx-auto scroll-mt-20 py-10">
       <h2 className="text-2xl mb-6 font-semibold text-gray-800">{name}</h2>
 
       <div className="space-y-4 divide-y divide-dashed px-3 border rounded relative">

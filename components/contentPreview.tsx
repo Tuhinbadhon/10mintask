@@ -168,7 +168,7 @@ export default function CourseContent() {
 
   return (
     <div>
-      <div className="   mt-6 bg-white">
+      <div className=" scroll-mt-20  mt-6 bg-white">
         <div className=" font-semibold text-2xl">Content preview</div>
 
         <div className="mt-4 p-3 border rounded">

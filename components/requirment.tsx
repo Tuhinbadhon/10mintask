@@ -12,7 +12,7 @@ const requirements = [
 
 export default function Requirements({ feature }: Props) {
   return (
-    <div className="mt-10">
+    <div className="mt-10 scroll-mt-20">
       <h2 className="font-semibold text-2xl mb-3">{feature?.name}</h2>
 
       <div className="border p-5 rounded space-y-3 text-base">

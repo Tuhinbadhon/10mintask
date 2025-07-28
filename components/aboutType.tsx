@@ -21,7 +21,7 @@ export default function About({ about }: Props) {
   };
 
   return (
-    <div id={`section-${about.order_idx}`} className="mt-16">
+    <div id={`section-${about.order_idx}`} className=" scroll-mt-20 mt-16">
       <div className="font-semibold text-2xl">{about?.name}</div>
 
       <div className="mt-5 divide-y divide-dashed border p-3  rounded">

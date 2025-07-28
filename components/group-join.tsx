@@ -13,7 +13,7 @@ function GroupJoin({ joins }: GroupJoinProps) {
   if (!joinsection || values.length === 0) return null;
 
   return (
-    <div id={`section-${joinsection.order_idx}`} className="mt-16">
+    <div id={`section-${joinsection.order_idx}`} className="mt-16 scroll-mt-20">
       <div>
         {values.map((item, index) => (
           <div

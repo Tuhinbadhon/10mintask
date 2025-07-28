@@ -13,7 +13,7 @@ export default function FeatureExplanations({ feature }: Props) {
   if (!feature || values.length === 0) return null;
 
   return (
-    <div id={`section-${feature.order_idx}`} className="mt-12">
+    <div id={`section-${feature.order_idx}`} className=" scroll-mt-20 mt-12">
       <div className="font-semibold text-2xl">{feature?.name}</div>
 
       <div className="mt-5 border p-3 rounded divide-y divide-dashed">
