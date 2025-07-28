@@ -102,7 +102,7 @@ function Instructor({ sectionData }: InstructorProps) {
         <div
           ref={scrollRef}
           onScroll={checkScroll}
-          className="flex overflow-x-auto border-b gap-4 scrollbar-hide scroll-smooth"
+          className="flex overflow-x-auto border-b md:pl-10 gap-4 scrollbar-hide scroll-smooth"
         >
           {tabSections.map((item, index) => (
             <button

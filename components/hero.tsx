@@ -34,7 +34,7 @@ function Hero({ data }: TData) {
             dangerouslySetInnerHTML={{ __html: data?.description || "" }}
           />
         </div>
-        <div className="w-full md:max-w-[390px] lg:max-w-[400px]  absolute right-0 md:top-[50px] md:absolute">
+        <div className="w-full md:max-w-[390px]   md:right-0 md:top-[50px] md:absolute">
           <Card data={data} />
         </div>
       </div>
