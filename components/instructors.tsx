@@ -3,10 +3,12 @@
 import { Data } from "@/types/product";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import CourseContent from "./contentPreview";
 import CourseInstructor from "./courseInstructor";
 import Feature from "./feature";
 import GroupJoin from "./group-join";
 import Pointers from "./pointers";
+import About from "./aboutType";
 // Import other section components if needed
 interface InstructorProps {
   sectionData: Data;
@@ -52,6 +54,7 @@ function Instructor({ sectionData }: InstructorProps) {
     if (item.type === "features") return "Features";
     if (item.type === "instructors") return "Instructors";
     if (item.type === "pointers") return "Instructors";
+    if (item.type === "about") return "Instructors";
   };
 
   useEffect(() => {
@@ -139,6 +142,18 @@ function Instructor({ sectionData }: InstructorProps) {
               key={item.order_idx}
               id={`section-${item.order_idx}`}
               pointers={item}
+            />
+          );
+        }
+        if (item.type === "content_preview") {
+          return <CourseContent key={item.order_idx} />;
+        }
+        if (item.type === "about") {
+          return (
+            <About
+              key={item.order_idx}
+              id={`section-${item.order_idx}`}
+              about={item}
             />
           );
         }

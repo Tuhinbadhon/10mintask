@@ -38,6 +38,15 @@ export interface Section {
   icon?: string;
   background?: Background;
   top_left_icon_img?: string;
+  isOpenByDefault?: boolean;
+  items?: {
+    title: string;
+    type: string;
+    isFree?: boolean;
+    url?: string;
+  }[];
+  instructors?: Instructor[];
+  features?: Checklist[];
 }
 
 export interface CtaText {
