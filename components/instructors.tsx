@@ -6,9 +6,10 @@ import { useEffect, useRef, useState } from "react";
 import CourseInstructor from "./courseInstructor";
 import Feature from "./feature";
 import GroupJoin from "./group-join";
+import Pointers from "./pointers";
 // Import other section components if needed
 interface InstructorProps {
-  sectionData?: Data;
+  sectionData: Data;
   id?: string;
 }
 function Instructor({ sectionData }: InstructorProps) {
@@ -50,6 +51,7 @@ function Instructor({ sectionData }: InstructorProps) {
     if (item.name?.trim() !== "") return item.name;
     if (item.type === "features") return "Features";
     if (item.type === "instructors") return "Instructors";
+    if (item.type === "pointers") return "Instructors";
   };
 
   useEffect(() => {
@@ -58,7 +60,7 @@ function Instructor({ sectionData }: InstructorProps) {
 
   return (
     <div className="md:max-w-[710px]">
-      <div className="relative cursor-pointer px-5 my-6">
+      <div className="sticky top-[0px] z-20 bg-white px-5 py-4">
         {/* Left arrow */}
         <button
           onClick={scrollLeft}
@@ -103,7 +105,6 @@ function Instructor({ sectionData }: InstructorProps) {
         </button>
       </div>
 
-      {/* Render Section Components by order */}
       {sections.map((item) => {
         if (item.type === "instructors") {
           return (
@@ -129,6 +130,15 @@ function Instructor({ sectionData }: InstructorProps) {
               key={item.order_idx}
               id={`section-${item.order_idx}`}
               joins={item}
+            />
+          );
+        }
+        if (item.type === "pointers") {
+          return (
+            <Pointers
+              key={item.order_idx}
+              id={`section-${item.order_idx}`}
+              pointers={item}
             />
           );
         }

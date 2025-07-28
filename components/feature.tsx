@@ -1,9 +1,9 @@
 "use client";
-import { Checklist } from "@/types/product";
+import { Section } from "@/types/product";
 import Image from "next/image";
 
 interface TData {
-  features: Checklist;
+  features: Section;
   id?: string;
 }
 function Feature({ features }: TData) {

@@ -1,29 +1,6 @@
 "use client";
+import { Medium } from "@/types/product";
 import Image from "next/image";
-
-interface Cta {
-  clicked_url?: string;
-  text?: string;
-}
-
-interface Background {
-  image?: string;
-}
-
-interface JoinItem {
-  background?: Background;
-  top_left_icon_img?: string;
-  title?: string;
-  description?: string;
-  cta?: Cta;
-  thumbnail?: string;
-}
-
-interface Medium {
-  order_idx?: number;
-  name?: string;
-  values?: JoinItem[];
-}
 
 interface GroupJoinProps {
   joins?: Medium;
@@ -33,14 +10,10 @@ interface GroupJoinProps {
 function GroupJoin({ joins }: GroupJoinProps) {
   const joinsection = joins;
   const values = joinsection?.values || [];
-
   if (!joinsection || values.length === 0) return null;
 
   return (
     <div id={`section-${joinsection.order_idx}`} className="mt-16">
-      {/* Optional section name */}
-      {/* <h2 className="text-2xl font-semibold mb-4">{joinsection.name || "Join Section"}</h2> */}
-
       <div>
         {values.map((item, index) => (
           <div

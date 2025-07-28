@@ -1,8 +1,8 @@
 export interface Medium {
   id: number;
-  type: string;
-  url: string;
-  thumbnail: string;
+  type?: string;
+  url?: string;
+  thumbnail?: string;
   values?: Instructor[];
   order_idx?: number;
   name: string;
@@ -23,12 +23,13 @@ export interface Checklist {
   slug?: string;
   text?: string;
   image?: string;
+  clicked_url?: string;
 }
 
 export interface Section {
   id: number;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   type: string;
   values?: Instructor[];
   order_idx?: number;
@@ -57,17 +58,18 @@ export interface Data {
   slug: string;
   id: number;
   data: Data[];
-  title: string;
+  title?: string;
   description: string;
   media: Medium[];
   checklist: Checklist[];
   seo: Seo;
-  cta_text: CtaText;
+  cta_text: Checklist;
   sections: Section[];
 }
 export interface Instructor {
   name: string;
   image?: string;
+  text: string;
   slug?: string;
   description?: string;
   university?: string;
@@ -76,6 +78,8 @@ export interface Instructor {
   title?: string;
   subtitle?: string;
   background?: Background;
+  cta?: Checklist;
+  thumbnail?: string;
   top_left_icon_img?: string;
 }
 export interface Background {
