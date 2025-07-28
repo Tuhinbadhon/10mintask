@@ -7,10 +7,12 @@ import About from "./aboutType";
 import CourseContent from "./contentPreview";
 import FeatureExplanations from "./Course-Exclusive-Feature";
 import CourseInstructor from "./courseInstructor";
+import Faq from "./faq";
 import Feature from "./feature";
 import FreeItemCard from "./free-items";
 import GroupJoin from "./group-join";
 import Pointers from "./pointers";
+// import TestimonialsSlider from "./testimonials";
 // Import other section components if needed
 interface InstructorProps {
   sectionData: Data;
@@ -70,6 +72,8 @@ function Instructor({ sectionData }: InstructorProps) {
     if (item.type === "about") return "Instructors";
     if (item.type === "feature_explanations") return "FeatureExplanations";
     if (item.type === "free_items") return "FreeItemCard";
+    if (item.type === "testimonials") return "TestimonialsSlider";
+    if (item.type === "faq") return "Faq";
   };
 
   useEffect(() => {
@@ -184,6 +188,15 @@ function Instructor({ sectionData }: InstructorProps) {
         if (item.type === "free_items") {
           return (
             <FreeItemCard
+              key={item.order_idx}
+              id={`section-${item.order_idx}`}
+              feature={item}
+            />
+          );
+        }
+        if (item.type === "faq") {
+          return (
+            <Faq
               key={item.order_idx}
               id={`section-${item.order_idx}`}
               feature={item}

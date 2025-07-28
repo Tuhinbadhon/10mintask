@@ -76,6 +76,9 @@ export interface Data {
   sections: Section[];
 }
 export interface Instructor {
+  id?: string;
+  question?: string;
+  answer?: string;
   name: string;
   image?: string;
   text: string;
@@ -91,6 +94,7 @@ export interface Instructor {
   thumbnail?: string;
   checklist: Checklist[];
   file_url: string;
+  order_idx: number;
   top_left_icon_img?: string;
 }
 export interface Background {
