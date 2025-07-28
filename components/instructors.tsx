@@ -5,11 +5,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import About from "./aboutType";
 import CourseContent from "./contentPreview";
+import FeatureExplanations from "./Course-Exclusive-Feature";
 import CourseInstructor from "./courseInstructor";
 import Feature from "./feature";
+import FreeItemCard from "./free-items";
 import GroupJoin from "./group-join";
 import Pointers from "./pointers";
-import FeatureExplanations from "./Course-Exclusive-Feature";
 // Import other section components if needed
 interface InstructorProps {
   sectionData: Data;
@@ -24,12 +25,17 @@ function Instructor({ sectionData }: InstructorProps) {
 
   // Keep all sections (don’t filter out empty names)
   const sections = sectionData?.sections || [];
-  const tabSections = sections.filter(
-    (item) =>
-      item.name?.trim() !== "" &&
-      // Only check .values if it exists (for sections that have values)
-      (Array.isArray(item.values) ? item.values.length > 0 : true)
-  );
+  const tabSections = sections.filter((item) => {
+    const hasName = item.name?.trim() !== "";
+    const hasValues = Array.isArray(item.values)
+      ? item.values.length > 0
+      : true;
+
+    // Always include free_items regardless of values
+    if (item.type === "free_items" && hasName) return true;
+
+    return hasName && hasValues;
+  });
 
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -63,6 +69,7 @@ function Instructor({ sectionData }: InstructorProps) {
     if (item.type === "pointers") return "Instructors";
     if (item.type === "about") return "Instructors";
     if (item.type === "feature_explanations") return "FeatureExplanations";
+    if (item.type === "free_items") return "FreeItemCard";
   };
 
   useEffect(() => {
@@ -168,6 +175,15 @@ function Instructor({ sectionData }: InstructorProps) {
         if (item.type === "feature_explanations") {
           return (
             <FeatureExplanations
+              key={item.order_idx}
+              id={`section-${item.order_idx}`}
+              feature={item}
+            />
+          );
+        }
+        if (item.type === "free_items") {
+          return (
+            <FreeItemCard
               key={item.order_idx}
               id={`section-${item.order_idx}`}
               feature={item}
