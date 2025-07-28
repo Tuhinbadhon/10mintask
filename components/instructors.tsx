@@ -11,7 +11,9 @@ import Faq from "./faq";
 import Feature from "./feature";
 import FreeItemCard from "./free-items";
 import GroupJoin from "./group-join";
+import Payment from "./payment";
 import Pointers from "./pointers";
+import Requirements from "./requirment";
 // import TestimonialsSlider from "./testimonials";
 // Import other section components if needed
 interface InstructorProps {
@@ -73,6 +75,8 @@ function Instructor({ sectionData }: InstructorProps) {
     if (item.type === "feature_explanations") return "FeatureExplanations";
     if (item.type === "free_items") return "FreeItemCard";
     if (item.type === "testimonials") return "TestimonialsSlider";
+    if (item.type === "requirements") return "Requirements";
+    if (item.type === "how_to_pay") return "Payment";
     if (item.type === "faq") return "Faq";
   };
 
@@ -194,6 +198,14 @@ function Instructor({ sectionData }: InstructorProps) {
             />
           );
         }
+
+        if (item.type === "requirements") {
+          return <Requirements key={item.order_idx} feature={item} />;
+        }
+        if (item.type === "how_to_pay") {
+          return <Payment key={item.order_idx} />;
+        }
+
         if (item.type === "faq") {
           return (
             <Faq
