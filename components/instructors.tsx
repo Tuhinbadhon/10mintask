@@ -9,6 +9,7 @@ import CourseInstructor from "./courseInstructor";
 import Feature from "./feature";
 import GroupJoin from "./group-join";
 import Pointers from "./pointers";
+import FeatureExplanations from "./Course-Exclusive-Feature";
 // Import other section components if needed
 interface InstructorProps {
   sectionData: Data;
@@ -61,6 +62,7 @@ function Instructor({ sectionData }: InstructorProps) {
     if (item.type === "instructors") return "Instructors";
     if (item.type === "pointers") return "Instructors";
     if (item.type === "about") return "Instructors";
+    if (item.type === "feature_explanations") return "FeatureExplanations";
   };
 
   useEffect(() => {
@@ -160,6 +162,15 @@ function Instructor({ sectionData }: InstructorProps) {
               key={item.order_idx}
               id={`section-${item.order_idx}`}
               about={item}
+            />
+          );
+        }
+        if (item.type === "feature_explanations") {
+          return (
+            <FeatureExplanations
+              key={item.order_idx}
+              id={`section-${item.order_idx}`}
+              feature={item}
             />
           );
         }

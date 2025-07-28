@@ -89,6 +89,8 @@ export interface Instructor {
   background?: Background;
   cta?: Checklist;
   thumbnail?: string;
+  checklist: Checklist[];
+  file_url: string;
   top_left_icon_img?: string;
 }
 export interface Background {
