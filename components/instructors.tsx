@@ -85,7 +85,7 @@ function Instructor({ sectionData }: InstructorProps) {
   }, [sectionData]);
 
   return (
-    <div className="md:max-w-[710px]">
+    <div className="md:max-w-[710px] ">
       <div className="sticky top-[0px] z-20 bg-white px-5 py-4">
         {/* Left arrow */}
         <button

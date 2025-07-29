@@ -6,13 +6,13 @@ interface TData {
 }
 function Hero({ data }: TData) {
   const bg = "/images/uiherobg.jpeg";
-
+  
   return (
     <div
       className="bg-cover bg-center bg-no-repeat md:px-44"
       style={{ backgroundImage: `url(${bg})` }}
     >
-      <div className="container relative mx-auto  px-4 md:px-0 flex flex-col md:flex-row gap-6 md:gap-12 py-6 md:py-10 min-h-[300px]">
+      <div className="container max-w-7xl relative   px-4 md:px-0 flex flex-col md:flex-row gap-6 md:gap-12 py-6 md:py-10 min-h-[300px]">
         <div className="w-full hidden md:block  md:max-w-[650px]">
           <h1 className="text-white mb-2 text-xl font-semibold md:text-4xl">
             {data?.title}

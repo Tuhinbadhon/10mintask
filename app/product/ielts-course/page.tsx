@@ -13,7 +13,7 @@ export default function Page() {
   const courseData = data?.data;
 
   return (
-    <div>
+    <div className="">
       <Hero data={courseData} />
       <div className="md:ml-44">
         <Instructor sectionData={courseData} />
