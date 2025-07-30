@@ -13,9 +13,9 @@ export default function Page() {
   const courseData = data?.data;
 
   return (
-    <div className="">
+    <div className=" mx-auto">
       <Hero data={courseData} />
-      <div className="md:ml-44">
+      <div className="">
         <Instructor sectionData={courseData} />
       </div>
     </div>

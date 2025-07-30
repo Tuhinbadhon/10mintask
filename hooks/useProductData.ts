@@ -9,7 +9,7 @@ const fetcher = async (url: string): Promise<ApiResponse> => {
       accept: "application/json",
     },
   });
-  return res.data; // returns shape: { success, data }
+  return res.data;
 };
 
 export function useProductData(

@@ -14,8 +14,7 @@ import GroupJoin from "./group-join";
 import Payment from "./payment";
 import Pointers from "./pointers";
 import Requirements from "./requirment";
-// import TestimonialsSlider from "./testimonials";
-// Import other section components if needed
+
 interface InstructorProps {
   sectionData: Data;
   id?: string;
@@ -85,138 +84,141 @@ function Instructor({ sectionData }: InstructorProps) {
   }, [sectionData]);
 
   return (
-    <div className="md:max-w-[710px] ">
-      <div className="sticky top-[0px] z-20 bg-white px-5 py-4">
-        {/* Left arrow */}
-        <button
-          onClick={scrollLeft}
-          disabled={!canScrollLeft}
-          className={`absolute cursor-pointer -left-6 top-1/2 -translate-y-1/2 z-10 bg-[#0000004d] text-white rounded-full p-1 transition-opacity ${
-            canScrollLeft ? "opacity-100" : "opacity-30 pointer-events-none"
-          }`}
-        >
-          <ChevronLeft size={24} />
-        </button>
+    <div className="w-full max-w-[1200px] mx-auto px-4 md:px-0">
+      <div className="w-[720px] ">
+        <div className="sticky top-[0px] z-20 bg-white px-5 py-4">
+          {/* Left arrow */}
+          <button
+            onClick={scrollLeft}
+            disabled={!canScrollLeft}
+            className={`absolute cursor-pointer -left-6 top-1/2 -translate-y-1/2 z-10 bg-[#0000004d] text-white rounded-full p-1 transition-opacity ${
+              canScrollLeft ? "opacity-100" : "opacity-30 pointer-events-none"
+            }`}
+          >
+            <ChevronLeft size={24} />
+          </button>
 
-        {/* Scrollable Section Tabs */}
-        <div
-          ref={scrollRef}
-          onScroll={checkScroll}
-          className="flex overflow-x-auto border-b md:pl-10 gap-4 scrollbar-hide scroll-smooth"
-        >
-          {tabSections.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => handleTabClick(index, item.order_idx)}
-              className={`whitespace-nowrap cursor-pointer text-base py-2 ${
-                activeIndex === index
-                  ? "text-green-600 border-b-2 border-green-600"
-                  : "text-[#525252]"
-              }`}
-            >
-              {getSectionLabel(item)}
-            </button>
-          ))}
+          {/* Scrollable Section Tabs */}
+          <div
+            ref={scrollRef}
+            onScroll={checkScroll}
+            className="flex overflow-x-auto border-b md:pl-10 gap-4 scrollbar-hide scroll-smooth"
+          >
+            {tabSections.map((item, index) => (
+              <button
+                key={index}
+                onClick={() => handleTabClick(index, item.order_idx)}
+                className={`whitespace-nowrap cursor-pointer text-base py-2 ${
+                  activeIndex === index
+                    ? "text-green-600 border-b-2 border-green-600"
+                    : "text-[#525252]"
+                }`}
+              >
+                {getSectionLabel(item)}
+              </button>
+            ))}
+          </div>
+
+          {/* Right arrow */}
+          <button
+            onClick={scrollRight}
+            disabled={!canScrollRight}
+            className={`absolute cursor-pointer -right-5 top-1/2 -translate-y-1/2 z-10 bg-[#0000004d] text-white rounded-full p-1 transition-opacity ${
+              canScrollRight ? "opacity-100" : "opacity-30 pointer-events-none"
+            }`}
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
 
-        {/* Right arrow */}
-        <button
-          onClick={scrollRight}
-          disabled={!canScrollRight}
-          className={`absolute cursor-pointer -right-5 top-1/2 -translate-y-1/2 z-10 bg-[#0000004d] text-white rounded-full p-1 transition-opacity ${
-            canScrollRight ? "opacity-100" : "opacity-30 pointer-events-none"
-          }`}
-        >
-          <ChevronRight size={24} />
-        </button>
+        {sections.map((item) => {
+          if (item.type === "instructors") {
+            return (
+              <CourseInstructor
+                key={item.order_idx}
+                id={`section-${item.order_idx}`}
+                instructors={item}
+              />
+            );
+          }
+          if (item.type === "features") {
+            return (
+              <Feature
+                key={item.order_idx}
+                id={`section-${item.order_idx}`}
+                features={item}
+              />
+            );
+          }
+          if (item.type === "group_join_engagement") {
+            return (
+              <GroupJoin
+                key={item.order_idx}
+                id={`section-${item.order_idx}`}
+                joins={item}
+              />
+            );
+          }
+          if (item.type === "pointers") {
+            return (
+              <Pointers
+                key={item.order_idx}
+                id={`section-${item.order_idx}`}
+                pointers={item}
+              />
+            );
+          }
+          if (item.type === "content_preview") {
+            return <CourseContent key={item.order_idx} />;
+          }
+          if (item.type === "about") {
+            return (
+              <About
+                key={item.order_idx}
+                id={`section-${item.order_idx}`}
+                about={item}
+              />
+            );
+          }
+          if (item.type === "feature_explanations") {
+            return (
+              <FeatureExplanations
+                key={item.order_idx}
+                id={`section-${item.order_idx}`}
+                feature={item}
+              />
+            );
+          }
+          if (item.type === "free_items") {
+            return (
+              <FreeItemCard
+                key={item.order_idx}
+                id={`section-${item.order_idx}`}
+                feature={item}
+              />
+            );
+          }
+
+          if (item.type === "requirements") {
+            return <Requirements key={item.order_idx} feature={item} />;
+          }
+          if (item.type === "how_to_pay") {
+            return <Payment key={item.order_idx} />;
+          }
+
+          if (item.type === "faq") {
+            return (
+              <Faq
+                key={item.order_idx}
+                id={`section-${item.order_idx}`}
+                feature={item}
+              />
+            );
+          }
+          return null;
+        })}
       </div>
-
-      {sections.map((item) => {
-        if (item.type === "instructors") {
-          return (
-            <CourseInstructor
-              key={item.order_idx}
-              id={`section-${item.order_idx}`}
-              instructors={item}
-            />
-          );
-        }
-        if (item.type === "features") {
-          return (
-            <Feature
-              key={item.order_idx}
-              id={`section-${item.order_idx}`}
-              features={item}
-            />
-          );
-        }
-        if (item.type === "group_join_engagement") {
-          return (
-            <GroupJoin
-              key={item.order_idx}
-              id={`section-${item.order_idx}`}
-              joins={item}
-            />
-          );
-        }
-        if (item.type === "pointers") {
-          return (
-            <Pointers
-              key={item.order_idx}
-              id={`section-${item.order_idx}`}
-              pointers={item}
-            />
-          );
-        }
-        if (item.type === "content_preview") {
-          return <CourseContent key={item.order_idx} />;
-        }
-        if (item.type === "about") {
-          return (
-            <About
-              key={item.order_idx}
-              id={`section-${item.order_idx}`}
-              about={item}
-            />
-          );
-        }
-        if (item.type === "feature_explanations") {
-          return (
-            <FeatureExplanations
-              key={item.order_idx}
-              id={`section-${item.order_idx}`}
-              feature={item}
-            />
-          );
-        }
-        if (item.type === "free_items") {
-          return (
-            <FreeItemCard
-              key={item.order_idx}
-              id={`section-${item.order_idx}`}
-              feature={item}
-            />
-          );
-        }
-
-        if (item.type === "requirements") {
-          return <Requirements key={item.order_idx} feature={item} />;
-        }
-        if (item.type === "how_to_pay") {
-          return <Payment key={item.order_idx} />;
-        }
-
-        if (item.type === "faq") {
-          return (
-            <Faq
-              key={item.order_idx}
-              id={`section-${item.order_idx}`}
-              feature={item}
-            />
-          );
-        }
-        return null;
-      })}
+      <div className="w-1/3"></div>
     </div>
   );
 }

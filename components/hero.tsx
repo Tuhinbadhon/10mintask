@@ -6,14 +6,15 @@ interface TData {
 }
 function Hero({ data }: TData) {
   const bg = "/images/uiherobg.jpeg";
-  
+
   return (
     <div
-      className="bg-cover bg-center bg-no-repeat md:px-44"
+      className="bg-cover bg-center bg-no-repeat w-full"
       style={{ backgroundImage: `url(${bg})` }}
     >
-      <div className="container max-w-7xl relative   px-4 md:px-0 flex flex-col md:flex-row gap-6 md:gap-12 py-6 md:py-10 min-h-[300px]">
-        <div className="w-full hidden md:block  md:max-w-[650px]">
+      <div className="max-w-7xl mx-auto relative px-4 md:px-10 flex flex-col md:flex-row gap-6 md:gap-12 py-6 md:py-10 min-h-[300px]">
+        {/* Left Side Content */}
+        <div className="w-full hidden md:block md:max-w-[650px]">
           <h1 className="text-white mb-2 text-xl font-semibold md:text-4xl">
             {data?.title}
           </h1>
@@ -34,7 +35,9 @@ function Hero({ data }: TData) {
             dangerouslySetInnerHTML={{ __html: data?.description || "" }}
           />
         </div>
-        <div className="w-full md:max-w-[390px]   md:right-0 md:top-[50px] md:absolute">
+
+        {/* Right Side Card */}
+        <div className="w-full md:max-w-[390px] md:absolute md:right-10 md:top-[50px]">
           <Card data={data} />
         </div>
       </div>
